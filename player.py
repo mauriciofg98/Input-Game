@@ -1,4 +1,4 @@
-import Tile from tile
+from tile import Tile
 
 class player:
 
@@ -11,8 +11,9 @@ class player:
     def __init__(self, c,): #this constructor initalizes the Rest Tiles and the color of the player
         self.color = c
         for i in range(1,7):
-            tile1 = tile(c, i)
+            tile1 = Tile(c, i)
             self.restTiles.append(tile1)
+            print(self.restTiles[i-1].path)
 
     def addToReady(self, tile): #this function adds a tile from the resttile to the ready tile by passing an integer to the function
         if(len(self.readyTiles) >= 3):
@@ -27,7 +28,7 @@ class player:
         else:
             tile = self.readyTiles.pop()
             self.BoardTiles.append(tile)
-            tile.action()
+            tile.move()
 
     def movePiece(self, tile):
         if(tile.end()):
@@ -38,5 +39,11 @@ class player:
                 self.readyTiles.append(self.BoardTiles[tile])
         self.BoardTiles[tile].action()
     
+    def loc(self):
+        print(self.BoardTiles[0].currentlocation())
 
+play1= player("R")
+play1.addToReady(3)
+play1.playPiece()
+# play1.loc()
 
