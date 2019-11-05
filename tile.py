@@ -12,6 +12,8 @@ class Tile:
         for i in range(len(tilepath)):
             self.path[i+1]=tilepath[i]
 
+        print("{}=={}".format(tileNumber,self.path))
+        print("~~~~~~~~~~~~")
     
     def move(self):
         # places tile in board

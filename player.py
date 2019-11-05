@@ -3,18 +3,18 @@ from tile import Tile
 class player:
 
     color = ""
-    readyTiles = []
-    restTiles = []
-    takenTiles = []
-    BoardTiles = []
 
     def __init__(self, c,): #this constructor initalizes the Rest Tiles and the color of the player
         self.color = c
-        for i in range(1,7):
-            tile1 = Tile(c, i)
-            self.restTiles.append(tile1)
-            print(self.restTiles[i-1].path)
+        self.readyTiles = []
+        self.restTiles = []
+        self.takenTiles = []
+        self.BoardTiles = []
 
+        for i in range(6):
+            t= Tile(c,i+1)
+            self.restTiles.append(t)
+             
     def addToReady(self, tile): #this function adds a tile from the resttile to the ready tile by passing an integer to the function
         if(len(self.readyTiles) >= 3):
             print("invalid move")
