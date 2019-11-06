@@ -1,16 +1,20 @@
 from  consts import TileConst
 class Tile:
+    
     belongs=""
-    path={}
+    path=[]
     OnPath=0
+    t = TileConst
     def __init__(self,player,tileNumber):
         self.belongs=player
+        self.label = tileNumber
+
         if(player == "B"):
-            tilepath=TileConst().altT(tileNumber)
+            self.tilepath = self.t.altT(self.t, tileNumber)
         else:
-            tilepath=TileConst().Paths[tileNumber]
-        for i in range(len(tilepath)):
-            self.path[i+1]=tilepath[i]
+            self.tilepath=self.t.Paths[tileNumber]
+        for i in range(0,len(self.tilepath)):
+            self.path = self.tilepath
 
         print("{}=={}".format(tileNumber,self.path))
         print("~~~~~~~~~~~~")
@@ -20,13 +24,13 @@ class Tile:
         self.OnPath=self.OnPath+1
         if(self.end()):
             self.OnPath=1
-        return self.path[self.OnPath]
+        #return self.path[self.OnPath]
 
     def currentlocation(self):
         if(self.OnPath== 0):
             return (-1,-1)
         else:
-            return self.path
+            return self.path[self.OnPath-1]
 
     def end(self):
         if self.OnPath== 4:

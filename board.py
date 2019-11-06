@@ -1,3 +1,7 @@
-import player from player
+from player import Player
+import pygame
 
-Players=[player("R"),player("B")]
+player1 = Player("R")
+player2 = Player("B")
+
+#Players=[Player("R"),Player("B")]
