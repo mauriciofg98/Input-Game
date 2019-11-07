@@ -1,11 +1,13 @@
 from player import Player
 import pygame
 from itertools import chain
+
 pygame.init()
 
-
-
+#window size
 win = pygame.display.set_mode((800,600))
+
+#fonts and colors use "B" stands for bright
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0,200,0)
@@ -29,11 +31,12 @@ height = 60
 vel =5
 background= pygame.image.load("Tiles/board.png")
 
-
+#creates a text box and makes the text white
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
     return textSurface, textSurface.get_rect()
 
+#creates a redirecting button (message, x coord, y coord, width, height, inactive color, active color, the action aka function)
 def button(msg,x,y,w,h,ic,ac,action= None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -79,18 +82,18 @@ def wrapline(text, font, maxwidth):
         text=text[nl:]                                 
     return wrapped
 
-
+#slices text into a list where each item fits within the maxwidth
 def wrap_multi_line(text, font, maxwidth):
     lines = chain(*(wrapline(line, font, maxwidth) for line in text.splitlines()))
     return list(lines)
-
+#prints text in list
 def displaytxt(txt, num):
     for words in txt:
         TextSurf, TextRect = text_objects(words, tinyText)
         TextRect.center = ((400),(num))
         win.blit(TextSurf, TextRect)
         num = num+20
-
+#displays the "about us" information 
 def about():
     run = True
     while run:
@@ -110,6 +113,7 @@ def about():
 
         pygame.display.flip()
 
+#displays the rules of the game
 def howto():
     run = True
     while run:
@@ -138,6 +142,7 @@ def howto():
         
         pygame.display.flip()
 
+#main menu that redirects window to alterate pages via buttons
 def game_intro():
     intro = True
     while intro:
@@ -160,7 +165,7 @@ def game_intro():
         clock.tick(15)
         
 
-      
+#initiates the game      
 def game():
     run = True
     while run:
