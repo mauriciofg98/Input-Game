@@ -12,7 +12,7 @@ class TileConst:
         self.path = []
 
     def altT(self,number):
-        #self.path=[]
+        self.path=[]
         for a in self.Paths[number]:
             y= 4-a[1]
             x= 5-a[0]
