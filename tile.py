@@ -1,32 +1,37 @@
 from  consts import TileConst
 class Tile:
+    
     belongs=""
-    path={}
+    path=[]
     OnPath=0
+    image = ''
+    t = TileConst()
     def __init__(self,player,tileNumber):
         self.belongs=player
-        if(player == "B"):
-            tilepath=TileConst().altT(tileNumber)
-        else:
-            tilepath=TileConst().Paths[tileNumber]
-        for i in range(len(tilepath)):
-            self.path[i+1]=tilepath[i]
+        self.label = tileNumber
 
-        print("{}=={}".format(tileNumber,self.path))
-        print("~~~~~~~~~~~~")
+        if(player == "B"):
+            self.tilepath = self.t.altT(tileNumber)
+            self.image = self.t.blueImages(tileNumber)
+        else:
+            self.tilepath=self.t.Paths[tileNumber]
+            self.image=self.t.redImages(tileNumber)
+        
+        self.path = self.tilepath
+
     
     def move(self):
         # places tile in board
         self.OnPath=self.OnPath+1
         if(self.end()):
             self.OnPath=1
-        return self.path[self.OnPath]
+        
 
     def currentlocation(self):
         if(self.OnPath== 0):
             return (-1,-1)
         else:
-            return self.path
+            return self.path[self.OnPath-1]
 
     def end(self):
         if self.OnPath== 4:
