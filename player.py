@@ -38,7 +38,8 @@ class Player:
                 self.restTiles.append(self.BoardTiles[tile])
             else: 
                 self.readyTiles.append(self.BoardTiles[tile])
-        self.BoardTiles[tile].action()
+        self.BoardTiles.action(tile)
+        tile.move()
     
     def loc(self):
         print("the location of the tile is")

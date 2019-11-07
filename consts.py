@@ -9,19 +9,19 @@ class TileConst:
     }
 
     images={
-        1: 'Tiles/red1.png',
-        2: 'Tiles/red2.png',
-        3: 'Tiles/red3.png',
-        4: 'Tiles/red4.png',
-        5: 'Tiles/red5.png',
-        6: 'Tiles/red6.png',
-        7: 'Tiles/blue1.png',
-        8: 'Tiles/blue2.png',
-        9: 'Tiles/blue3.png',
-        10: 'Tiles/blue4.png',
-        11: 'Tiles/blue5.png',
-        12: 'Tiles/blue6.png'
-    }
+            1: 'Tiles/red2.png',
+            2: 'Tiles/red5.png',
+            3: 'Tiles/red4.png',
+            4: 'Tiles/red6.png',
+            5: 'Tiles/red3.png',
+            6: 'Tiles/red1.png',
+            7: 'Tiles/blue2.png',
+            8: 'Tiles/blue5.png',
+            9: 'Tiles/blue3.png',
+            10: 'Tiles/blue6.png',
+            11: 'Tiles/blue4.png',
+            12: 'Tiles/blue1.png'
+        }
     
     def __init__(self):
         self.path = []

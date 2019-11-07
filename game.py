@@ -20,8 +20,6 @@ class Game:
             exit() #FOR NOW IT EXITS
         else:
             self.players=[Player("R",self.board),Player("B",self.board)]
-        self.players[0].addToReady(0)
-        self.players[0].playPiece()
 
         self.window.fill((255,255,255))
         self.drawGrid(self.lastE)
@@ -39,6 +37,12 @@ class Game:
         return True
 
     def drawGrid(self,ev=None):
+
+        
+
+
+
+
         for sq in range(12):
             dim=self.board.grid[sq]
             if self.board.tiles[sq] is not None:
@@ -50,9 +54,9 @@ class Game:
             if ev[1] is not None:
                 pygame.draw.rect(self.window,(255,255,0),self.board.grid[ev[1]],3)
     def drawTiles(self,p,gScale,gPos,ev=None):
-        a=self.displayRestPile(p,gScale,gPos,ev)
         self.displayReadyPile(p,gScale,gPos,ev)
         self.displayTakenPile(p,gScale,gPos,ev)
+        a=self.displayRestPile(p,gScale,gPos,ev)
         return a
 
     def displayTakenPile(self,p,gScale,gPos,ev):
@@ -90,18 +94,24 @@ class Game:
             yStart= gPos[1]+gScale[1] +10
         else:
             yStart=gPos[1]-height-10
-
+        
+        takeout=None
         for tile in range(len(p.restTiles)):
-            if self.lastE is not None and self.lastE[0]==ev[0]:
-                print("DOUBLE CLICK")
             start=xStart+((width+5)*tile)
             img= pygame.transform.scale(pygame.image.load(p.restTiles[tile].image).convert(),(width,height))
             rect=self.window.blit(img,(start,yStart))
             if ev is not None:
                 if rect.collidepoint(ev[0]):
+                    if self.lastE is not None and rect.collidepoint(self.lastE[0]):
+                        takeout=tile
                     rectSpecs=(start,yStart,width,height)
                     pygame.draw.rect(self.window,(255,255,0),pygame.Rect(rectSpecs),7)
                     temp=False
+
+        # if takeout is not None and p.color == self.activeP:
+        if takeout is not None:
+            p.addToReady(takeout)
+            
         return temp
             
     def displayReadyPile(self,p,gScale,gPos,ev):
@@ -114,17 +124,26 @@ class Game:
         textRect = text.get_rect() 
 
         X= gPos[0]+gScale[0]+20
-        
+        takeout= False
         if(p.color == "R"):
             yStart= gPos[1]+gScale[1] - height
             self.window.blit(text,(X,yStart-int(self.wSize[1]*.027)))
         else:
             yStart=gPos[1]
             self.window.blit(text,(X,yStart+int(self.wSize[1]*.027)+height))
-
         if(len(p.readyTiles)>0):
+            rectSpecs=(X,yStart,width,height)
             img= pygame.transform.scale(pygame.image.load(p.readyTiles[-1].image),(width,height))
-            self.window.blit(img,(X,yStart))
+            rect=self.window.blit(img,(X,yStart))
+            if rect.collidepoint(ev[0]):
+                pygame.draw.rect(self.window,(255,255,0),pygame.Rect(rectSpecs),3)
+                if self.lastE is not None and rect.collidepoint(self.lastE[0]):
+                    takeout=True        
+        # if takeout and p.color == self.activeP:
+        if takeout:
+            # if self.activeP == "R":
+            #     self.activeP= "B"
+            p.playPiece()
         
 
 
