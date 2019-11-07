@@ -11,6 +11,10 @@ class Player:
         self.readyTiles = []
         self.restTiles = []
         self.takenTiles = []
+<<<<<<< HEAD
+=======
+        #self.BoardTiles = []
+>>>>>>> d49bcb4c2fdf5dc99d585be9e5480ab96a782871
         self.BoardTiles = boar
         for i in range(6):
             t = Tile(c,i+1)

@@ -23,8 +23,14 @@ class Board:
     def addToB(self,tile):
         #(y,x)
         i= tile.path[tile.OnPath]
+<<<<<<< HEAD
         newI=11-(((i[0]-1)*3) +(i[1]-1))
         print("{} {}".format(newI,tile.path[tile.OnPath]))
+=======
+        print(i)
+        newI=12-(((i[0]-1)*3) +(i[1]-1))
+        print(newI)
+>>>>>>> d49bcb4c2fdf5dc99d585be9e5480ab96a782871
         self.tiles[newI]=tile
     
     def getTile(self,eX,eY):
@@ -32,6 +38,7 @@ class Board:
             if self.grid[a].collidepoint(eX,eY):
                 return (a,False)
         return (None,True)
+<<<<<<< HEAD
 
     def action(self,tile):
         i= tile.path[tile.OnPath]
@@ -41,3 +48,5 @@ class Board:
         a= tile.path[tile.OnPath-1]
         newA=12-(((a[0]-1)*3) +(a[1]-1))
         self.tiles[newA]= None
+=======
+>>>>>>> d49bcb4c2fdf5dc99d585be9e5480ab96a782871
