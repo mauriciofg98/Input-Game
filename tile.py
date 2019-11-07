@@ -5,7 +5,10 @@ class Tile:
     path=[]
     OnPath=0
     image = ''
+<<<<<<< HEAD
     label = ""
+=======
+>>>>>>> a7ab81b2806004e0994f13d3805e484b48ee983b
     t = TileConst()
     def __init__(self,player,tileNumber):
         self.belongs=player
