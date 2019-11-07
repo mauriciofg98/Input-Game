@@ -47,7 +47,7 @@ class Player:
     def printRestTiles(self):
         print("These are the tiles at rest")
         for i in self.restTiles:
-            print(i.path)
+            print(i.image)
         print("~~~~~~~~~~~~~~~~~~")
         
     def printReadyTiles(self):
@@ -62,7 +62,7 @@ class Player:
             print(i.path)
         print("~~~~~~~~~~~~~~~~~~~~")
 
-"""
+
 play1= Player("R")
 
 play1.addToReady(5)
@@ -77,4 +77,4 @@ play1.printReadyTiles()
 
 
 play1.loc()
-"""
+

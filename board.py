@@ -1,35 +1,99 @@
 from player import Player
 import pygame
+#from pygame.locals import MOUSEBUTTONDOWN, MOUSEBUTTONUP
+
+pygame.init()
+SCREEN_WIDTH = 430
+SCREEN_HEIGHT = 410
+
+#BLACK = (  0,   0,   0)
+WHITE = (255, 255, 255)
+RED   = (255,   0,   0)
+
+
+FPS = 30
+
+# --- classses --- (CamelCase names)
+
+# empty
+
+# --- functions --- (lower_case names)
+
+# empty
+
+# --- main ---
+
+# - init -
 
 pygame.init()
 
-win = pygame.display.set_mode((500,500))
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+redSquare = pygame.image.load("images/red-square.jpg").convert()
+#screen_rect = screen.get_rect()
 
-pygame.display.set_caption("Input")
-x=50
-y=50
-width = 40
-height = 60
-vel =5
+pygame.display.set_caption("Tracking System")
 
-run = True
+# - objects -
 
-while run:
-    pygame.time.delay(100)
+rectangle = pygame.rect.Rect(176, 134, 17, 17)
+rectangle_draging = False
+
+# - mainloop -
+
+clock = pygame.time.Clock()
+
+running = True
+
+while running:
+
+    # - events -
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
-    win.fill(WHITE)
+            running = False
 
-    pygame.draw.circle(win, BLACK, [80, 80], 80, 0)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:            
+                if rectangle.collidepoint(event.pos):
+                    rectangle_draging = True
+                    mouse_x, mouse_y = event.pos
+                    offset_x = rectangle.x - mouse_x
+                    offset_y = rectangle.y - mouse_y
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:            
+                rectangle_draging = False
+
+        elif event.type == pygame.MOUSEMOTION:
+            if rectangle_draging:
+                mouse_x, mouse_y = event.pos
+                rectangle.x = mouse_x + offset_x
+                rectangle.y = mouse_y + offset_y
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Set the x, y postions of the mouse click
+            x, y = event.pos
+            if redSquare.get_rect().collidepoint(x, y):
+                print('clicked on image')
+    # - updates (without draws) -
+
+    # empty
+
+    # - draws (without updates) -
+
+    screen.fill(WHITE)
+
+    pygame.draw.rect(screen, RED, rectangle)
+
     pygame.display.flip()
+
+    # - constant game speed / FPS -
+
+    clock.tick(FPS)
+
+# - end -
 
 pygame.quit()
 
-player1 = Player("R")
-player2 = Player("B")
 
 
-#Players=[Player("R"),Player("B")]
