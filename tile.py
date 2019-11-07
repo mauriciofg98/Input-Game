@@ -4,6 +4,8 @@ class Tile:
     belongs=""
     path=[]
     OnPath=0
+    image = ''
+    label = ""
     t = TileConst()
     def __init__(self,player,tileNumber):
         self.belongs=player
@@ -11,8 +13,10 @@ class Tile:
 
         if(player == "B"):
             self.tilepath = self.t.altT(tileNumber)
+            self.image = self.t.blueImages(tileNumber)
         else:
             self.tilepath=self.t.Paths[tileNumber]
+            self.image=self.t.redImages(tileNumber)
         
         self.path = self.tilepath
 
