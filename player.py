@@ -6,12 +6,12 @@ class Player:
 
     color = ""
 
-    def __init__(self, c,): #this constructor initalizes the Rest Tiles and the color of the player
+    def __init__(self, c,boar): #this constructor initalizes the Rest Tiles and the color of the player
         self.color = c
         self.readyTiles = []
         self.restTiles = []
         self.takenTiles = []
-        self.BoardTiles = []
+        self.BoardTiles = boar
         for i in range(6):
             t = Tile(c,i+1)
             self.restTiles.append(t)
@@ -28,7 +28,7 @@ class Player:
             print("invalid move")
         else:
             tile = self.readyTiles.pop()
-            self.BoardTiles.append(tile)
+            self.BoardTiles.addToB(tile)
             tile.move()
 
     def movePiece(self, tile):
@@ -47,7 +47,7 @@ class Player:
     def printRestTiles(self):
         print("These are the tiles at rest")
         for i in self.restTiles:
-            print(i.image)
+            print(i.path)
         print("~~~~~~~~~~~~~~~~~~")
         
     def printReadyTiles(self):
@@ -63,18 +63,18 @@ class Player:
         print("~~~~~~~~~~~~~~~~~~~~")
 
 
-play1= Player("R")
+# play1= Player("R")
+# play1.printRestTiles()
+# play1.addToReady(5)
 
-play1.addToReady(5)
+# play1.addToReady(4)
 
-play1.addToReady(4)
+# play1.playPiece()
+# play1.printRestTiles()
 
-play1.playPiece()
-play1.printRestTiles()
-
-play1.printBoardTiles()
-play1.printReadyTiles()
+# play1.printBoardTiles()
+# play1.printReadyTiles()
 
 
-play1.loc()
+# play1.loc()
 

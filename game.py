@@ -1,6 +1,6 @@
 import pygame
 from player import Player
-from board2 import Board
+from realBoard import Board
 
 
 class Game:
@@ -92,6 +92,8 @@ class Game:
             yStart=gPos[1]-height-10
 
         for tile in range(len(p.restTiles)):
+            if self.lastE is not None and self.lastE[0]==ev[0]:
+                print("DOUBLE CLICK")
             start=xStart+((width+5)*tile)
             img= pygame.transform.scale(pygame.image.load(p.restTiles[tile].image).convert(),(width,height))
             rect=self.window.blit(img,(start,yStart))
