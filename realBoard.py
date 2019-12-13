@@ -39,6 +39,7 @@ class Board:
             if self.grid[a].collidepoint(eX,eY):
                 return (a,False)
         return (None,True)
+        
 
     def action(self,tile):
         if( tile.move()== -1):
