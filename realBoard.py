@@ -1,4 +1,5 @@
 import pygame
+
 class Board:
     grid=[]
     tiles=[None for a in range(12)]
@@ -23,30 +24,47 @@ class Board:
     def addToB(self,tile):
         #(y,x)
         i= tile.path[tile.OnPath]
-<<<<<<< HEAD
         newI=11-(((i[0]-1)*3) +(i[1]-1))
-        print("{} {}".format(newI,tile.path[tile.OnPath]))
-=======
-        print(i)
-        newI=12-(((i[0]-1)*3) +(i[1]-1))
-        print(newI)
->>>>>>> d49bcb4c2fdf5dc99d585be9e5480ab96a782871
+        eaten=None
+        if(self.tiles[newI] is not None):
+            if self.tiles[newI].belongs == tile.belongs:
+                return False
+            else:
+                eaten=self.tiles[newI]
         self.tiles[newI]=tile
+        return eaten
     
     def getTile(self,eX,eY):
         for a in range(len(self.grid)):
             if self.grid[a].collidepoint(eX,eY):
                 return (a,False)
         return (None,True)
-<<<<<<< HEAD
 
     def action(self,tile):
+        if( tile.move()== -1):
+            i= tile.path[tile.OnPath]
+            newI=11-(((i[0]-1)*3) +(i[1]-1))
+            self.tiles[newI]=None
+            return -1
         i= tile.path[tile.OnPath]
-        newI=12-(((i[0]-1)*3) +(i[1]-1))
-        self.tiles[newI]=tile
+        newI=11-(((i[0]-1)*3) +(i[1]-1))
+        eaten= None
+        if self.tiles[newI] is None:
+            self.tiles[newI]=tile
+        else:
+            if self.tiles[newI].belongs== tile.belongs:
+                tile.OnPath-=1
+                return tile
+            else:
+                eaten= self.tiles[newI]
+                self.tiles[newI]=tile
+                
+        
 
         a= tile.path[tile.OnPath-1]
-        newA=12-(((a[0]-1)*3) +(a[1]-1))
+        newA=11-(((a[0]-1)*3) +(a[1]-1))
         self.tiles[newA]= None
-=======
->>>>>>> d49bcb4c2fdf5dc99d585be9e5480ab96a782871
+        return eaten
+
+        
+

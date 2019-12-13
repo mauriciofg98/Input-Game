@@ -11,9 +11,9 @@ class TileConst:
     images={
             1: 'Tiles/red2.png',
             2: 'Tiles/red5.png',
-            3: 'Tiles/red4.png',
+            3: 'Tiles/red3.png',
             4: 'Tiles/red6.png',
-            5: 'Tiles/red3.png',
+            5: 'Tiles/red4.png',
             6: 'Tiles/red1.png',
             7: 'Tiles/blue2.png',
             8: 'Tiles/blue5.png',
